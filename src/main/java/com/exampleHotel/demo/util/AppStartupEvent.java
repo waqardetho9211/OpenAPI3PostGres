@@ -16,7 +16,7 @@ public class AppStartupEvent implements ApplicationListener<ApplicationReadyEven
 
     @Override
     public void onApplicationEvent(ApplicationReadyEvent event) {
-        Iterable<Room> rooms = this.roomRepository.findAll();
-        rooms.forEach(System.out::println);
+        //Iterable<Room> rooms = this.roomRepository.findAll();
+        //rooms.forEach(System.out::println);
     }
 }
