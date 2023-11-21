@@ -23,6 +23,41 @@ CREATE TABLE RESERVATION(
   RES_DATE DATE
 );
 
+CREATE SCHEMA IF NOT EXISTS tdd;
+
+CREATE TABLE IF NOT EXISTS tdd.SERVICES (
+                                            SERVICE_ID  UUID PRIMARY KEY,
+                                            NAME VARCHAR UNIQUE,
+                                            PRICE NUMERIC(12,2)
+    );
+
+CREATE TABLE IF NOT EXISTS tdd.CUSTOMERS (
+                                             CUSTOMER_ID  UUID PRIMARY KEY,
+                                             FIRST_NAME VARCHAR,
+                                             LAST_NAME VARCHAR,
+                                             EMAIL VARCHAR UNIQUE,
+                                             PHONE VARCHAR,
+                                             ADDRESS VARCHAR
+);
+
+CREATE TABLE IF NOT EXISTS tdd.VENDORS (
+                                           VENDOR_ID  UUID PRIMARY KEY,
+                                           NAME VARCHAR NOT NULL,
+                                           CONTACT VARCHAR,
+                                           PHONE VARCHAR,
+                                           EMAIL VARCHAR,
+                                           ADDRESS VARCHAR
+);
+
+CREATE TABLE tdd.PRODUCTS (
+                              PRODUCT_ID UUID PRIMARY KEY,
+                              NAME VARCHAR UNIQUE,
+                              PRICE NUMERIC(12,2),
+                              VENDOR_ID UUID NOT NULL,
+                              FOREIGN KEY (VENDOR_ID) references tdd.VENDORS(VENDOR_ID)
+);
+
+
 ALTER TABLE RESERVATION ADD FOREIGN KEY (ROOM_ID) REFERENCES ROOM(ROOM_ID);
 ALTER TABLE RESERVATION ADD FOREIGN KEY (GUEST_ID) REFERENCES GUEST(GUEST_ID);
 CREATE INDEX IDX_RES_DATE_ ON RESERVATION(RES_DATE);

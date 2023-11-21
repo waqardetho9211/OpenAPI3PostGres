@@ -1,4 +1,4 @@
-package com.exampleHotel.demo.web;
+package com.exampleHotel.demo.web.controller;
 
 import com.exampleHotel.demo.business.ReservationService;
 import com.exampleHotel.demo.data.Guest;
